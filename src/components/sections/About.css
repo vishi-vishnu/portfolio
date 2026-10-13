@@ -4,14 +4,53 @@
 .about-grid {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
-  gap: clamp(28px, 5vw, 56px);
+  gap: clamp(32px, 6vw, 80px);
   align-items: start;
 }
 .about-copy {
   display: grid;
-  gap: 18px;
+  gap: 22px;
   color: var(--text-muted);
   font-size: clamp(16px, 1.5vw, 17.5px);
+}
+.about-goal {
+  position: relative;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  margin-top: 10px;
+  padding: 22px 24px;
+  border-radius: var(--radius);
+  border: 1px solid color-mix(in srgb, var(--accent-3) 35%, transparent);
+  border-left: 3px solid var(--accent-3);
+  background: color-mix(in srgb, var(--accent-3) 8%, var(--surface));
+}
+.about-goal-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  color: var(--accent-3);
+  background: color-mix(in srgb, var(--accent-3) 14%, transparent);
+}
+.about-goal-icon svg {
+  width: 21px;
+  height: 21px;
+}
+.about-goal-label {
+  display: block;
+  font-size: 12px;
+  color: var(--accent-3);
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+.about-goal p {
+  color: var(--text);
+  font-size: clamp(16.5px, 1.6vw, 18.5px);
+  font-weight: 500;
+  line-height: 1.55;
 }
 .about-quick {
   margin-top: 8px;
@@ -85,13 +124,13 @@
 }
 
 .focus-grid {
-  margin-top: clamp(40px, 6vw, 64px);
+  margin-top: clamp(56px, 8vw, 96px);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: 24px;
 }
 .focus {
-  padding: 26px 24px 28px;
+  padding: 32px 30px 34px;
   overflow: hidden;
 }
 .focus:hover {
@@ -135,7 +174,7 @@
 
 /* ---------- Timeline ---------- */
 .tl-wrap {
-  margin-top: clamp(64px, 9vw, 110px);
+  margin-top: clamp(80px, 11vw, 140px);
 }
 .tl-head {
   display: flex;
@@ -143,7 +182,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 8px 20px;
-  margin-bottom: 28px;
+  margin-bottom: 40px;
 }
 .tl-head h3 {
   font-size: clamp(24px, 3vw, 32px);
@@ -155,7 +194,7 @@
 .tl {
   position: relative;
   display: grid;
-  gap: 22px;
+  gap: 28px;
   padding-left: 64px;
 }
 .tl::before {
@@ -207,7 +246,7 @@
   }
 }
 .tl-card {
-  padding: 22px 24px 24px;
+  padding: 28px 32px 30px;
 }
 .tl-card:hover {
   border-color: color-mix(in srgb, var(--accent) 40%, transparent);
@@ -275,7 +314,7 @@
 
 /* ---------- Certifications ---------- */
 .certs {
-  margin-top: clamp(56px, 8vw, 90px);
+  margin-top: clamp(72px, 10vw, 120px);
 }
 .certs-title {
   display: flex;
@@ -292,13 +331,13 @@
 .certs-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-  gap: 12px;
+  gap: 16px;
 }
 .cert {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 16px 18px;
+  gap: 6px;
+  padding: 20px 22px;
   border-radius: var(--radius);
 }
 .cert:hover {
@@ -314,6 +353,12 @@
   color: var(--text-dim);
 }
 
+@media (min-width: 961px) {
+  .yaml {
+    position: sticky;
+    top: calc(var(--nav-h) + 48px);
+  }
+}
 @media (max-width: 960px) {
   .about-grid {
     grid-template-columns: 1fr;

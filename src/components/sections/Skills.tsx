@@ -1,6 +1,6 @@
 import { useMemo, useState, type CSSProperties } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { skillCategories, skills, levelLabel, type SkillCategoryId } from '../../data/skills'
+import { skillCategories, skills, type SkillCategoryId } from '../../data/skills'
 import { getTech } from '../../data/techIcons'
 import { spotlightHandler } from '../../hooks/useSpotlight'
 import { SectionHeading } from '../ui/SectionHeading'
@@ -69,13 +69,8 @@ export function Skills() {
                       <h3>{s.name}</h3>
                       {s.note && <p>{s.note}</p>}
                     </div>
-                    {s.learning && <span className="skill-learning mono">learning</span>}
                   </div>
                   <div className="skill-meter">
-                    <div className="skill-meter-row">
-                      <span>{levelLabel(s.level)}</span>
-                      <span className="mono">{s.level}%</span>
-                    </div>
                     <div
                       className="skill-bar"
                       role="meter"
@@ -91,6 +86,7 @@ export function Skills() {
                         transition={{ duration: 1.1, delay: 0.15 + Math.min(i * 0.03, 0.5), ease: [0.22, 1, 0.36, 1] }}
                       />
                     </div>
+                    <span className="skill-pct mono">{s.level}%</span>
                   </div>
                 </motion.li>
               )

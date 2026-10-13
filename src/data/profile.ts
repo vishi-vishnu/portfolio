@@ -33,8 +33,18 @@ export const profile = {
   /** About section. Each paragraph is a string. */
   about: [
     "I'm an Electronics and Communication engineer who moved into software, and I've spent the last year building and shipping a multi-tenant SaaS platform at Inthera Consulting Group. That work taught me the full path: React and TypeScript screens, Django REST APIs, Redis-backed rate limiting, and the Docker Compose setup that runs it all.",
-    'What I enjoy most is the delivery side. Writing a Dockerfile that builds small and fast, wiring a GitHub Actions pipeline that lints, tests, scans and deploys on every push, and setting up checks so a broken build never reaches users. I am now going deeper into AWS, Kubernetes and Terraform.',
+    "Beyond code, I'm a creative person with a keen interest in AI and good design. I'm expanding my expertise into the DevOps domain, working with AWS cloud services, containerization with Docker, and automation through Linux and shell scripting. This combination lets me deploy AI models efficiently and build scalable infrastructure.",
+    "I'm passionate about creating intelligent systems that are not only powerful but also reliable, scalable and production-ready. Whether it's building AI solutions or automating deployment pipelines, I focus on quality and efficiency.",
   ],
+
+  /** Highlighted separately at the end of the About text. */
+  goal: 'My goal is to leverage both AI and cloud technologies to create innovative solutions that make a real impact.',
+
+  /** Hero numbers. Update these by hand when they change. */
+  stats: {
+    yearsInIndustry: 1,
+    technologies: 15,
+  },
 
   /** The three focus cards in the About section. */
   focus: [

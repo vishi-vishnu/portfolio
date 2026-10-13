@@ -189,11 +189,12 @@ footer {
 .btn-primary {
   background: var(--accent);
   color: var(--accent-ink);
-  box-shadow: 0 10px 30px -10px var(--accent);
+  box-shadow: 0 6px 16px -10px var(--accent);
 }
 .btn-primary:hover {
-  box-shadow: 0 14px 40px -10px var(--accent);
-  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -12px var(--accent);
+  transform: translateY(-1px);
+  filter: brightness(1.05);
 }
 .btn-ghost {
   border: 1px solid var(--border-strong);
@@ -242,7 +243,7 @@ footer {
 /* ---------- Section heading ---------- */
 .section-head {
   max-width: 720px;
-  margin-bottom: clamp(40px, 6vw, 64px);
+  margin-bottom: clamp(48px, 7vw, 80px);
 }
 .section-head.center {
   margin-left: auto;
@@ -281,7 +282,7 @@ footer {
   font-weight: 700;
 }
 .section-sub {
-  margin-top: 16px;
+  margin-top: 18px;
   color: var(--text-muted);
   font-size: clamp(16px, 1.6vw, 18px);
 }
@@ -325,7 +326,8 @@ footer {
   color: var(--text-muted);
   white-space: nowrap;
 }
-.chip svg {
+.chip svg,
+.chip .tech-img {
   width: 14px;
   height: 14px;
   flex: none;
@@ -399,4 +401,10 @@ footer {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+.tech-img {
+  display: block;
+  object-fit: contain;
+  flex: none;
 }

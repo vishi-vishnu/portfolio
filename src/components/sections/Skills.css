@@ -1,19 +1,19 @@
 .skills .tabs {
-  margin-bottom: 28px;
+  margin-bottom: 40px;
 }
 .skill-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
 }
 .skill {
-  padding: 18px 18px 18px;
+  padding: 24px 24px 22px;
   border-radius: var(--radius);
   overflow: hidden;
 }
 .skill:hover {
   border-color: color-mix(in srgb, var(--brand) 55%, transparent);
-  box-shadow: 0 14px 40px -22px var(--brand);
+  box-shadow: 0 14px 34px -24px var(--brand);
 }
 .skill.spotlight::before {
   background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--brand) 16%, transparent), transparent 50%);
@@ -28,19 +28,21 @@
   flex: none;
   display: grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--brand) 13%, transparent);
-  border: 1px solid color-mix(in srgb, var(--brand) 28%, transparent);
-  transition: transform 0.3s var(--ease);
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--text) 5%, transparent);
+  border: 1px solid var(--border);
+  transition: transform 0.3s var(--ease), border-color 0.3s;
 }
 .skill:hover .skill-logo {
-  transform: rotate(-6deg) scale(1.06);
+  transform: scale(1.06);
+  border-color: color-mix(in srgb, var(--brand) 45%, transparent);
 }
-.skill-logo svg {
-  width: 24px;
-  height: 24px;
+.skill-logo svg,
+.skill-logo .tech-img {
+  width: 28px;
+  height: 28px;
 }
 .skill-text {
   min-width: 0;
@@ -58,33 +60,22 @@
   line-height: 1.4;
   margin-top: 2px;
 }
-.skill-learning {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  font-size: 10px;
-  padding: 2px 7px;
-  border-radius: 6px;
-  color: var(--warn);
-  border: 1px solid color-mix(in srgb, var(--warn) 40%, transparent);
-  background: color-mix(in srgb, var(--warn) 10%, transparent);
-}
 .skill-meter {
   position: relative;
-  margin-top: 16px;
-}
-.skill-meter-row {
+  margin-top: 20px;
   display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-bottom: 7px;
+  align-items: center;
+  gap: 14px;
 }
-.skill-meter-row .mono {
-  color: var(--text);
+.skill-pct {
+  min-width: 3ch;
+  text-align: right;
+  font-size: 13px;
   font-weight: 600;
+  color: var(--text-muted);
 }
 .skill-bar {
+  flex: 1;
   height: 6px;
   border-radius: 6px;
   background: color-mix(in srgb, var(--text-dim) 18%, transparent);
@@ -136,7 +127,8 @@
   color: var(--text-muted);
   white-space: nowrap;
 }
-.marquee-item svg {
+.marquee-item svg,
+.marquee-item .tech-img {
   width: 18px;
   height: 18px;
 }
@@ -151,7 +143,7 @@
     gap: 10px;
   }
   .skill {
-    padding: 14px;
+    padding: 16px;
   }
   .skill-top {
     flex-direction: column;
@@ -164,10 +156,6 @@
   }
   .skill-text p {
     display: none;
-  }
-  .skill-learning {
-    top: 0;
-    right: 0;
   }
 }
 @media (max-width: 360px) {

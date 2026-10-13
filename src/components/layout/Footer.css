@@ -79,7 +79,8 @@
   color: var(--text-muted);
   font-size: 14.5px;
 }
-.footer-stack svg {
+.footer-stack svg,
+.footer-stack .tech-img {
   width: 16px;
   height: 16px;
 }

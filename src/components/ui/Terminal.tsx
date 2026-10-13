@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type Reac
 import { useReducedMotion } from 'framer-motion'
 import { profile } from '../../data/profile'
 import { skills, skillCategories } from '../../data/skills'
-import { projects, statusLabel } from '../../data/projects'
+import { projects, showStatus, statusLabel } from '../../data/projects'
 import { timeline } from '../../data/timeline'
 import { setTheme } from '../../hooks/useTheme'
 import './Terminal.css'
@@ -110,7 +110,8 @@ function runCommand(raw: string): ReactNode[] | 'clear' {
         ...projects.map((p) => (
           <>
             <span className="t-cyan t-pad">{p.id}/</span>
-            <span className="t-dim">[{statusLabel[p.status]}]</span> {p.title}
+            {showStatus(p.status) && <span className="t-green">[{statusLabel[p.status]}] </span>}
+            {p.title}
           </>
         )),
         <span className="t-dim">Tip: cd projects to see them in detail.</span>,

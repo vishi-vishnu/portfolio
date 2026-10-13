@@ -1,11 +1,7 @@
 import { useCallback, useMemo, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { LuArrowUpRight } from 'react-icons/lu'
-import { SiGithub } from 'react-icons/si'
 import { projectCategories, projects, type Project, type ProjectCategoryId } from '../../data/projects'
-import { profile } from '../../data/profile'
-import { fadeUp, inView } from '../../lib/motion'
 import { SectionHeading } from '../ui/SectionHeading'
 import { ProjectCard } from '../ui/ProjectCard'
 import { ProjectModal } from '../ui/ProjectModal'
@@ -60,23 +56,6 @@ export function Projects() {
           </AnimatePresence>
         </motion.div>
 
-        <motion.a
-          className="more-card card"
-          href={profile.socials.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          variants={fadeUp}
-          {...inView}
-        >
-          <span className="more-icon">
-            <SiGithub />
-          </span>
-          <span className="more-text">
-            <strong>More on GitHub</strong>
-            <span className="mono">github.com/vishi-vishnu</span>
-          </span>
-          <LuArrowUpRight className="more-arrow" />
-        </motion.a>
       </div>
 
       {createPortal(<AnimatePresence>{open && <ProjectModal project={open} onClose={close} />}</AnimatePresence>, document.body)}

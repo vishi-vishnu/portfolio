@@ -4,12 +4,12 @@
 .contact-grid {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
-  gap: 22px;
+  gap: 32px;
   align-items: start;
 }
 .contact-side {
   display: grid;
-  gap: 12px;
+  gap: 14px;
 }
 .label {
   display: block;
@@ -99,8 +99,8 @@
 }
 .form-body {
   display: grid;
-  gap: 16px;
-  padding: clamp(18px, 3vw, 28px);
+  gap: 18px;
+  padding: clamp(20px, 3.4vw, 36px);
 }
 .field-row {
   display: grid;

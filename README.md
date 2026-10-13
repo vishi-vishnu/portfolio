@@ -60,7 +60,7 @@ Everything about projects lives in **one file**: [`src/data/projects.ts`](src/da
   image: '/projects/my-api.webp',
   imageAlt: 'What the image shows',
   year: '2026',
-  status: 'live',                     // 'live' | 'in-progress' | 'planned' | 'academic'
+  status: 'live',                     // 'live' | 'completed' | 'in-progress' | 'planned' | 'academic'
   categories: ['devops', 'fullstack'],// which filter tabs show it
   stack: ['Docker', 'GitHub Actions', 'AWS EC2'],
   links: {
@@ -73,6 +73,8 @@ Everything about projects lives in **one file**: [`src/data/projects.ts`](src/da
 
 4. Run `npm test`. It checks the image exists, the id is unique, links start with `https://` and every tech has a logo.
 
+Only `live` projects show a status badge on the card. To show other badges too, add them to `VISIBLE_STATUSES` in the same file.
+
 The filter tabs, counts, hero stats, terminal `projects` command and the details modal all update automatically.
 
 ## Add a new skill
@@ -80,13 +82,14 @@ The filter tabs, counts, hero stats, terminal `projects` command and the details
 Open [`src/data/skills.ts`](src/data/skills.ts) and add one line:
 
 ```ts
-{ name: 'Ansible', category: 'devops', level: 65, note: 'Playbooks', learning: true },
+{ name: 'Ansible', category: 'devops', level: 65, note: 'Playbooks' },
 ```
 
-If the logo does not show, add one line to [`src/data/techIcons.ts`](src/data/techIcons.ts):
+If the logo does not show, add it to [`src/data/techIcons.ts`](src/data/techIcons.ts):
 
-1. Search the name on [react-icons.github.io/react-icons](https://react-icons.github.io/react-icons) (brand logos start with `Si`).
-2. Import it and add `Ansible: { icon: SiAnsible, color: '#EE0000' },`
+- **Full-colour logo (best):** download the "original" SVG from [devicon.dev](https://devicon.dev), save it as `src/assets/logos/ansible.svg`, import it at the top of `techIcons.ts` and add
+  `Ansible: { logo: ansibleLogo, icon: SiAnsible, color: '#EE0000' },`
+- **Simple icon:** search the name on [react-icons.github.io/react-icons](https://react-icons.github.io/react-icons) (brand logos start with `Si`), import it and add `Ansible: { icon: SiAnsible, color: '#EE0000' },`
 
 Unknown names never break the site. They just show a generic code icon until you add the logo.
 
@@ -94,7 +97,7 @@ Unknown names never break the site. They just show a generic code icon until you
 
 | What | File |
 | --- | --- |
-| Name, roles, bio, email, links, certifications | [`src/data/profile.ts`](src/data/profile.ts) |
+| Name, roles, bio, goal, hero numbers, email, links, certifications | [`src/data/profile.ts`](src/data/profile.ts) |
 | Career timeline (jobs, internships, education) | [`src/data/timeline.ts`](src/data/timeline.ts) |
 | Resume | replace `public/Vishnu_Kumar_GK_Resume.pdf` (keep the same name) |
 | Colours and fonts | [`src/styles/tokens.css`](src/styles/tokens.css) |

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { LuAward, LuBriefcase, LuCloudCog, LuGraduationCap, LuMonitorSmartphone, LuServerCog, LuRocket } from 'react-icons/lu'
+import { LuTarget, LuAward, LuBriefcase, LuCloudCog, LuGraduationCap, LuMonitorSmartphone, LuServerCog, LuRocket } from 'react-icons/lu'
 import type { IconType } from 'react-icons'
 import { profile } from '../../data/profile'
 import { timeline, type TimelineKind } from '../../data/timeline'
@@ -41,6 +41,15 @@ export function About() {
                 {p}
               </motion.p>
             ))}
+            <motion.aside className="about-goal" variants={fadeUp} aria-label="My goal">
+              <span className="about-goal-icon" aria-hidden="true">
+                <LuTarget />
+              </span>
+              <div>
+                <span className="about-goal-label mono">my goal</span>
+                <p>{profile.goal}</p>
+              </div>
+            </motion.aside>
             <motion.ul className="about-quick" variants={fadeUp}>
               <li>
                 <span className="mono k">current</span> Full Stack Engineer @ Inthera

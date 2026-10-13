@@ -27,6 +27,7 @@
 .hero-glow.g1 {
   width: 520px;
   height: 520px;
+  opacity: 0.8;
   top: -120px;
   right: -80px;
   background: var(--glow);
@@ -221,7 +222,8 @@
   font-size: 24px;
   animation: bob 6s ease-in-out infinite;
 }
-.floater svg {
+.floater svg,
+.floater .tech-img {
   width: 24px;
   height: 24px;
 }
@@ -317,7 +319,8 @@
     height: 40px;
     border-radius: 11px;
   }
-  .floater svg {
+  .floater svg,
+.floater .tech-img {
     width: 19px;
     height: 19px;
   }

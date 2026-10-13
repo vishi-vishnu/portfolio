@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { LuExternalLink, LuX, LuCheck } from 'react-icons/lu'
 import { SiGithub } from 'react-icons/si'
-import { statusLabel, type Project } from '../../data/projects'
+import { showStatus, statusLabel, type Project } from '../../data/projects'
 import { TechChip } from './TechChip'
 
 export function ProjectModal({ project: p, onClose }: { project: Project; onClose: () => void }) {
@@ -61,10 +61,12 @@ export function ProjectModal({ project: p, onClose }: { project: Project; onClos
         </div>
         <div className="pmodal-body">
           <div className="pcard-meta mono">
-            <span className={`pstatus inline s-${p.status}`}>
-              <i aria-hidden="true" />
-              {statusLabel[p.status]}
-            </span>
+            {showStatus(p.status) && (
+              <span className={`pstatus inline s-${p.status}`}>
+                <i aria-hidden="true" />
+                {statusLabel[p.status]}
+              </span>
+            )}
             <span>{p.year}</span>
           </div>
           <h3 id="pmodal-title" className="pmodal-title">
@@ -100,9 +102,6 @@ export function ProjectModal({ project: p, onClose }: { project: Project; onClos
               <a className="btn btn-ghost" href={p.links.github} target="_blank" rel="noopener noreferrer">
                 <SiGithub /> View code
               </a>
-            )}
-            {!p.links?.live && !p.links?.github && (
-              <span className="pcard-soon mono">{p.status === 'academic' ? 'Academic project · no public repo' : 'Code and live demo coming soon'}</span>
             )}
           </div>
         </div>

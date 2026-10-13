@@ -7,14 +7,15 @@
  * That's it. Filters, cards, the details modal and the hero stats update automatically.
  *
  * Fields
- *   status     'live' | 'in-progress' | 'planned' | 'academic'
+ *   status     'live' | 'completed' | 'in-progress' | 'planned' | 'academic'
+ *              (only statuses listed in VISIBLE_STATUSES below show a badge on the card)
  *   categories which filter tabs show it ('devops', 'fullstack', 'frontend', 'iot')
  *   stack      tech names. Logos come from src/data/techIcons.ts
  *   featured   true = big highlighted card at the top
  *   links      any of live / github. Leave out what you don't have.
  */
 
-export type ProjectStatus = 'live' | 'in-progress' | 'planned' | 'academic'
+export type ProjectStatus = 'live' | 'completed' | 'in-progress' | 'planned' | 'academic'
 
 export const projectCategories = [
   { id: 'all', label: 'All' },
@@ -67,6 +68,29 @@ export const projects: Project[] = [
       github: 'https://github.com/vishi-vishnu/projectdesk',
     },
     featured: true,
+  },
+  {
+    id: 'social-media-app',
+    title: 'Social Media Web App',
+    tagline: 'Real-time posts and likes with Google sign-in on Firebase',
+    description:
+      'A real-time social media web app where people sign in with Google, share short posts and like each other\'s posts. Built with React and TypeScript on Firebase Authentication and Firestore, with a GitHub Actions pipeline that deploys to Firebase Hosting and creates preview builds for pull requests.',
+    highlights: [
+      'Google sign-in and sign-out with Firebase Authentication; the navbar changes with the user\'s login state.',
+      'Firestore-backed post feed with like and unlike actions per user.',
+      'Create-post form validated with React Hook Form and Yup.',
+      'Component-driven React UI with React Router pages, written in TypeScript.',
+      'GitHub Actions deploys to Firebase Hosting on every merge, with preview builds for pull requests.',
+    ],
+    image: '/projects/social-media-app.webp',
+    imageAlt: 'Illustration of a social feed with Google sign-in, posts and like counts powered by Firebase',
+    year: '2024',
+    status: 'completed',
+    categories: ['fullstack', 'frontend'],
+    stack: ['React', 'TypeScript', 'Firebase Auth', 'Firestore', 'React Router', 'React Hook Form', 'Yup', 'GitHub Actions', 'Firebase Hosting'],
+    links: {
+      github: 'https://github.com/vishi-vishnu/react-course/tree/Firebase-Social-Media-project',
+    },
   },
   {
     id: 'dockerized-cicd',
@@ -194,8 +218,16 @@ export const projects: Project[] = [
   },
 ]
 
+/** Which statuses get a badge on the card. Add 'in-progress' etc. here if you want them shown. */
+export const VISIBLE_STATUSES: ProjectStatus[] = ['live']
+
+export function showStatus(status: ProjectStatus) {
+  return VISIBLE_STATUSES.includes(status)
+}
+
 export const statusLabel: Record<ProjectStatus, string> = {
   live: 'Live',
+  completed: 'Completed',
   'in-progress': 'In progress',
   planned: 'Planned',
   academic: 'Academic',

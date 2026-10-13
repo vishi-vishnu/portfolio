@@ -4,7 +4,6 @@ import { SiGithub } from 'react-icons/si'
 import { FaLinkedinIn } from 'react-icons/fa6'
 import { profile } from '../../data/profile'
 import { projects } from '../../data/projects'
-import { skills } from '../../data/skills'
 import { useTypewriter } from '../../hooks/useTypewriter'
 import { EASE } from '../../lib/motion'
 import { NetworkCanvas } from '../ui/NetworkCanvas'
@@ -15,9 +14,9 @@ import { CountUp } from '../ui/CountUp'
 import './Hero.css'
 
 const STATS = [
-  { value: 1, suffix: '+', label: 'Year in industry' },
+  { value: profile.stats.yearsInIndustry, suffix: '+', label: 'Year in industry' },
   { value: projects.length, suffix: '', label: 'Projects' },
-  { value: skills.length, suffix: '+', label: 'Technologies' },
+  { value: profile.stats.technologies, suffix: '+', label: 'Technologies' },
   { value: profile.certifications.length, suffix: '', label: 'Certifications' },
 ]
 

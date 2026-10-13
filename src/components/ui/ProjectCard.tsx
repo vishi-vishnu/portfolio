@@ -2,7 +2,7 @@ import { forwardRef } from 'react'
 import { motion } from 'framer-motion'
 import { LuArrowUpRight, LuExternalLink, LuMaximize2, LuStar } from 'react-icons/lu'
 import { SiGithub } from 'react-icons/si'
-import { projectCategories, statusLabel, type Project } from '../../data/projects'
+import { projectCategories, showStatus, statusLabel, type Project } from '../../data/projects'
 import { spotlightHandler } from '../../hooks/useSpotlight'
 import { TechChip } from './TechChip'
 
@@ -33,10 +33,12 @@ export const ProjectCard = forwardRef<HTMLElement, Props>(function ProjectCard({
     >
       <button type="button" className="pcard-media" onClick={onOpen} aria-label={`Open details for ${p.title}`}>
         <img src={p.image} alt={p.imageAlt} loading={featured ? 'eager' : 'lazy'} decoding="async" width={1600} height={1000} />
-        <span className={`pstatus s-${p.status}`}>
-          <i aria-hidden="true" />
-          {statusLabel[p.status]}
-        </span>
+        {showStatus(p.status) && (
+          <span className={`pstatus s-${p.status}`}>
+            <i aria-hidden="true" />
+            {statusLabel[p.status]}
+          </span>
+        )}
         {featured && (
           <span className="pfeatured">
             <LuStar /> Featured
@@ -74,15 +76,13 @@ export const ProjectCard = forwardRef<HTMLElement, Props>(function ProjectCard({
               <LuExternalLink /> Live demo
             </a>
           )}
-          {p.links?.github ? (
+          {p.links?.github && (
             <a className="btn btn-ghost btn-sm" href={p.links.github} target="_blank" rel="noopener noreferrer">
               <SiGithub /> Code
             </a>
-          ) : (
-            <span className="pcard-soon mono">{p.status === 'academic' ? 'Academic project' : 'Repo coming soon'}</span>
           )}
-          <button type="button" className="pcard-more" onClick={onOpen}>
-            Details <LuArrowUpRight />
+          <button type="button" className="pcard-more" onClick={onOpen} aria-label={`Details for ${p.title}`} title="View details">
+            <LuArrowUpRight />
           </button>
         </div>
       </div>

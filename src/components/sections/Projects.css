@@ -1,10 +1,10 @@
 .projects .tabs {
-  margin-bottom: 28px;
+  margin-bottom: 40px;
 }
 .project-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 28px;
 }
 .pcard {
   display: flex;
@@ -129,7 +129,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 20px 20px 20px;
+  padding: 24px 26px 26px;
 }
 .pcard-meta {
   display: flex;
@@ -178,36 +178,30 @@
 }
 .pcard-actions {
   margin-top: auto;
-  padding-top: 20px;
+  padding-top: 24px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
 }
-.pcard-soon {
-  font-size: 12px;
-  color: var(--text-dim);
-  padding: 8px 10px;
-  border: 1px dashed var(--border-strong);
-  border-radius: 10px;
-}
 .pcard-more {
   margin-left: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  min-height: 40px;
-  font-size: 14px;
-  font-weight: 600;
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
   color: var(--text-muted);
-  transition: color 0.2s;
+  transition: color 0.2s, border-color 0.2s;
 }
 .pcard-more:hover {
   color: var(--accent);
+  border-color: var(--accent);
 }
 .pcard-more svg {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   transition: transform 0.2s var(--ease);
 }
 .pcard-more:hover svg {
@@ -221,18 +215,15 @@
   grid-template-columns: 1.2fr 1fr;
 }
 .pcard.featured .pcard-media {
-  aspect-ratio: auto;
-  height: 100%;
-  min-height: 380px;
-  border-bottom: 0;
-  border-right: 1px solid var(--border);
-  background: #070b14;
-}
-.pcard.featured .pcard-media img {
-  object-fit: contain;
+  align-self: center;
+  margin: 28px 0 28px 28px;
+  width: auto;
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
 }
 .pcard.featured .pcard-body {
-  padding: 30px 30px 28px;
+  padding: 40px 40px 36px;
 }
 .pcard.featured .pcard-title {
   font-size: clamp(26px, 3vw, 34px);
@@ -240,51 +231,6 @@
 .pcard.featured .pcard-tagline {
   font-size: 16px;
   color: var(--accent);
-}
-
-/* GitHub "more" card */
-.more-card {
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 18px 22px;
-  border-radius: var(--radius);
-  border-style: dashed;
-}
-.more-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-}
-.more-icon {
-  display: grid;
-  place-items: center;
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--text) 8%, transparent);
-}
-.more-icon svg {
-  width: 24px;
-  height: 24px;
-}
-.more-text {
-  display: flex;
-  flex-direction: column;
-}
-.more-text .mono {
-  font-size: 13px;
-  color: var(--text-dim);
-}
-.more-arrow {
-  margin-left: auto;
-  width: 22px;
-  height: 22px;
-  color: var(--accent);
-  transition: transform 0.25s var(--ease);
-}
-.more-card:hover .more-arrow {
-  transform: translate(3px, -3px);
 }
 
 /* Modal */
@@ -389,10 +335,10 @@
     grid-template-columns: 1fr;
   }
   .pcard.featured .pcard-media {
-    aspect-ratio: 16 / 10;
-    min-height: 0;
-    border-right: 0;
+    margin: 0;
+    border: 0;
     border-bottom: 1px solid var(--border);
+    border-radius: 0;
   }
 }
 @media (max-width: 680px) {
