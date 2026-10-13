@@ -14,7 +14,7 @@
 ![Nginx](https://img.shields.io/badge/Served%20by-Nginx-009639?logo=nginx&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?logo=vercel&logoColor=white)
 
-[**Live site**](#deploy-to-vercel) &nbsp;·&nbsp; [Add a project](#add-a-new-project) &nbsp;·&nbsp; [Add a skill](#add-a-new-skill) &nbsp;·&nbsp; [Run locally](#run-locally) &nbsp;·&nbsp; [DevOps](#devops-setup)
+[**Live site**](https://vishnukumar-gk.vercel.app) &nbsp;·&nbsp; [Add a project](#add-a-new-project) &nbsp;·&nbsp; [Add a skill](#add-a-new-skill) &nbsp;·&nbsp; [Run locally](#run-locally) &nbsp;·&nbsp; [DevOps](#devops-setup)
 
 </div>
 
