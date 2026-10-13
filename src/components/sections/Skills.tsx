@@ -71,21 +71,24 @@ export function Skills() {
                     </div>
                   </div>
                   <div className="skill-meter">
-                    <div
+                    {/* The bar track (which has a real size) is what gets observed. Observing the
+                        scaled-to-zero fill itself was unreliable in some browsers. */}
+                    <motion.div
                       className="skill-bar"
                       role="meter"
                       aria-label={`${s.name} proficiency`}
                       aria-valuenow={s.level}
                       aria-valuemin={0}
                       aria-valuemax={100}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true, amount: 0.1 }}
                     >
                       <motion.span
-                        initial={{ scaleX: 0 }}
-                        whileInView={{ scaleX: s.level / 100 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.1, delay: 0.15 + Math.min(i * 0.03, 0.5), ease: [0.22, 1, 0.36, 1] }}
+                        variants={{ hidden: { scaleX: 0 }, show: { scaleX: s.level / 100 } }}
+                        transition={{ duration: 1.1, delay: 0.1 + Math.min(i * 0.02, 0.3), ease: [0.22, 1, 0.36, 1] }}
                       />
-                    </div>
+                    </motion.div>
                     <span className="skill-pct mono">{s.level}%</span>
                   </div>
                 </motion.li>
