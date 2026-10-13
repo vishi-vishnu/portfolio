@@ -1,0 +1,341 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  padding: calc(var(--nav-h) + 48px) 0 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-canvas {
+  width: 100%;
+  height: 100%;
+  mask-image: radial-gradient(ellipse 80% 70% at 60% 40%, #000 30%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 60% 40%, #000 30%, transparent 85%);
+}
+.hero-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+}
+.hero-glow.g1 {
+  width: 520px;
+  height: 520px;
+  top: -120px;
+  right: -80px;
+  background: var(--glow);
+  animation: drift 14s ease-in-out infinite alternate;
+}
+.hero-glow.g2 {
+  width: 440px;
+  height: 440px;
+  bottom: -140px;
+  left: -120px;
+  background: var(--glow-2);
+  animation: drift 18s ease-in-out infinite alternate-reverse;
+}
+@keyframes drift {
+  to {
+    transform: translate(-60px, 50px) scale(1.1);
+  }
+}
+
+.hero-grid > * {
+  min-width: 0;
+}
+.hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+
+.hero-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px 7px 12px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent-2) 35%, transparent);
+  background: color-mix(in srgb, var(--accent-2) 10%, transparent);
+  color: var(--accent-2);
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.pulse {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-2);
+}
+.pulse::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-2);
+  animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.hero-hello {
+  margin-top: 22px;
+  font-size: 15px;
+  color: var(--text-dim);
+}
+.accent {
+  color: var(--accent);
+}
+.hero-name {
+  margin-top: 6px;
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+.hero-hi {
+  display: block;
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+.hero-fullname {
+  display: inline-block;
+  font-size: clamp(40px, 5.4vw, 66px);
+  white-space: nowrap;
+  padding-bottom: 0.06em;
+}
+.hero-role {
+  margin-top: 18px;
+  min-height: 1.5em;
+  font-size: clamp(19px, 2.4vw, 26px);
+  font-weight: 600;
+  color: var(--text);
+}
+.hero-caret {
+  display: inline-block;
+  width: 3px;
+  height: 1.05em;
+  margin-left: 4px;
+  vertical-align: -0.15em;
+  background: var(--accent);
+  animation: blink 1s steps(1) infinite;
+}
+.hero-intro {
+  margin-top: 16px;
+  max-width: 560px;
+  color: var(--text-muted);
+  font-size: clamp(16px, 1.5vw, 17.5px);
+}
+.hero-ctas {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.hero-meta {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+.hero-socials {
+  display: flex;
+  gap: 10px;
+}
+.hero-loc {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+.hero-loc svg {
+  width: 16px;
+  height: 16px;
+}
+.hero-stats {
+  margin: 26px 0 0;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: start;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+}
+.hero-stat {
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 0 22px;
+  border-left: 1px solid var(--border);
+}
+.hero-stat:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+.hero-stat dd {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+}
+.hero-stat dt {
+  margin-top: 4px;
+  font-size: 12.5px;
+  color: var(--text-dim);
+}
+
+.hero-visual {
+  position: relative;
+  perspective: 1200px;
+}
+.floater {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--surface-solid);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-sm);
+  font-size: 24px;
+  animation: bob 6s ease-in-out infinite;
+}
+.floater svg {
+  width: 24px;
+  height: 24px;
+}
+.floater.f1 {
+  top: -40px;
+  left: 18%;
+}
+.floater.f2 {
+  top: -40px;
+  right: 14%;
+  animation-delay: -1.5s;
+}
+.floater.f3 {
+  top: 42%;
+  right: -36px;
+  animation-delay: -3s;
+}
+.floater.f4 {
+  bottom: -40px;
+  right: 26%;
+  animation-delay: -4.2s;
+}
+.floater.f5 {
+  bottom: -40px;
+  left: -28px;
+  animation-delay: -2.4s;
+}
+@keyframes bob {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.hero-pipe {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(40px, 6vw, 64px);
+}
+
+.hero-scroll {
+  position: relative;
+  z-index: 1;
+  margin: 36px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 11px;
+  color: var(--text-dim);
+  transition: color 0.2s;
+}
+.hero-scroll:hover {
+  color: var(--accent);
+}
+.hero-scroll svg {
+  width: 18px;
+  height: 18px;
+  animation: nudge 1.8s ease-in-out infinite;
+}
+@keyframes nudge {
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-visual {
+    max-width: 640px;
+    width: 100%;
+    margin: 24px auto 0;
+  }
+}
+@media (max-width: 640px) {
+  .hero {
+    padding-top: calc(var(--nav-h) + 40px);
+  }
+  .hero-ctas .btn {
+    flex: 1 1 100%;
+  }
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 18px;
+  }
+  .hero-stat:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .floater {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+  }
+  .floater svg {
+    width: 19px;
+    height: 19px;
+  }
+  .floater.f1,
+  .floater.f2 {
+    top: -30px;
+  }
+  .floater.f4,
+  .floater.f5 {
+    bottom: -30px;
+  }
+  .floater.f3 {
+    right: -10px;
+  }
+  .floater.f5 {
+    left: -6px;
+  }
+  .hero-fullname {
+    white-space: normal;
+  }
+}

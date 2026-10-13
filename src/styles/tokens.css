@@ -1,0 +1,90 @@
+/* Design tokens. Change colours here and the whole site follows. */
+:root,
+[data-theme='dark'] {
+  --bg: #060a13;
+  --bg-elev: #0a1120;
+  --surface: rgba(13, 20, 36, 0.72);
+  --surface-solid: #0d1424;
+  --surface-hover: rgba(20, 30, 52, 0.85);
+  --border: rgba(148, 163, 184, 0.14);
+  --border-strong: rgba(148, 163, 184, 0.3);
+  --text: #e6edf7;
+  --text-muted: #9fb0c6;
+  --text-dim: #6b7c93;
+  --accent: #22d3ee;
+  --accent-2: #34d399;
+  --accent-3: #a78bfa;
+  --accent-ink: #04121a;
+  --warn: #fbbf24;
+  --danger: #f87171;
+  --grid-line: rgba(148, 163, 184, 0.07);
+  --glow: rgba(34, 211, 238, 0.22);
+  --glow-2: rgba(52, 211, 153, 0.16);
+  --shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.7);
+  --shadow-sm: 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  --gradient: linear-gradient(120deg, #22d3ee 0%, #34d399 55%, #a3e635 100%);
+  --nav-bg: rgba(8, 13, 25, 0.72);
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg: #f5f8fc;
+  --bg-elev: #ffffff;
+  --surface: rgba(255, 255, 255, 0.86);
+  --surface-solid: #ffffff;
+  --surface-hover: #ffffff;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --text-dim: #64748b;
+  --accent: #0e7490;
+  --accent-2: #047857;
+  --accent-3: #6d28d9;
+  --accent-ink: #ffffff;
+  --warn: #b45309;
+  --danger: #dc2626;
+  --grid-line: rgba(15, 23, 42, 0.055);
+  --glow: rgba(14, 116, 144, 0.14);
+  --glow-2: rgba(4, 120, 87, 0.1);
+  --shadow: 0 20px 50px -24px rgba(15, 23, 42, 0.25);
+  --shadow-sm: 0 8px 24px -14px rgba(15, 23, 42, 0.2);
+  --gradient: linear-gradient(120deg, #0e7490 0%, #047857 60%, #4d7c0f 100%);
+  --nav-bg: rgba(255, 255, 255, 0.78);
+  color-scheme: light;
+}
+
+:root {
+  /* Terminal and code blocks stay dark in both themes. */
+  --brand-gradient: linear-gradient(120deg, #22d3ee 0%, #34d399 55%, #a3e635 100%);
+  --term-bg: #070c16;
+  --term-bar: #0e1626;
+  --term-text: #d6e2f0;
+  --term-dim: #6b7c93;
+  --term-green: #34d399;
+  --term-cyan: #22d3ee;
+  --term-yellow: #fbbf24;
+  --term-purple: #c4b5fd;
+  --term-red: #f87171;
+
+  --font-sans: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Space Grotesk Variable', 'Space Grotesk', var(--font-sans);
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 20px;
+  --container: 1200px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --section-y: clamp(72px, 9vw, 112px);
+  --nav-h: 68px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* z-index scale */
+  --z-bg: 0;
+  --z-content: 1;
+  --z-nav: 40;
+  --z-overlay: 60;
+  --z-modal: 80;
+  --z-loader: 100;
+}

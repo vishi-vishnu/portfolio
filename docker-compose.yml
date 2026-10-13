@@ -1,0 +1,12 @@
+# Run the production build locally:  docker compose up --build
+# Then open http://localhost:8080
+services:
+  portfolio:
+    build:
+      context: .
+      args:
+        COMMIT_SHA: local
+    image: ghcr.io/vishi-vishnu/portfolio:local
+    ports:
+      - "8080:80"
+    restart: unless-stopped
