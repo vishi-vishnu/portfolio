@@ -8,13 +8,31 @@ import { fadeUp, inView, stagger } from '../../lib/motion'
 import { SectionHeading } from '../ui/SectionHeading'
 import './Contact.css'
 
-type Status = 'idle' | 'sending' | 'sent' | 'error'
+type Status = 'idle' | 'sending' | 'sent' | 'opened' | 'error'
 
-const ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT
+/**
+ * How messages are delivered (first match wins):
+ *  1. VITE_WEB3FORMS_KEY  -> sent straight to my inbox through web3forms.com (free)
+ *  2. VITE_FORM_ENDPOINT  -> any JSON form endpoint, e.g. Formspree
+ *  3. nothing set         -> opens Gmail compose in a new tab with the message filled in
+ */
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY
+const ENDPOINT = WEB3FORMS_KEY ? 'https://api.web3forms.com/submit' : import.meta.env.VITE_FORM_ENDPOINT
+
+function composeLinks(data: Record<string, string>) {
+  const subject = `Portfolio enquiry from ${data.name}`
+  const body = `${data.message}\n\n${data.name}\n${data.email}`
+  const q = (s: string) => encodeURIComponent(s)
+  return {
+    gmail: `https://mail.google.com/mail/?view=cm&fs=1&to=${q(profile.email)}&su=${q(subject)}&body=${q(body)}`,
+    mailto: `mailto:${profile.email}?subject=${q(subject)}&body=${q(body)}`,
+  }
+}
 
 export function Contact() {
   const [copied, setCopied] = useState(false)
   const [status, setStatus] = useState<Status>('idle')
+  const [links, setLinks] = useState<ReturnType<typeof composeLinks> | null>(null)
 
   const copyEmail = async () => {
     try {
@@ -30,24 +48,36 @@ export function Contact() {
     e.preventDefault()
     const form = e.currentTarget
     const data = Object.fromEntries(new FormData(form)) as Record<string, string>
+    if (data.botcheck) return // honeypot: real people never fill this hidden field
+    const compose = composeLinks(data)
+    setLinks(compose)
 
-    // No form service configured: open the visitor's mail app with the message filled in.
+    // No form service configured: open Gmail compose in a new tab (works on any device with a browser).
     if (!ENDPOINT) {
-      const subject = encodeURIComponent(`Portfolio enquiry from ${data.name}`)
-      const body = encodeURIComponent(`${data.message}\n\n${data.name}\n${data.email}`)
-      window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`
-      setStatus('sent')
+      window.open(compose.gmail, '_blank', 'noopener,noreferrer')
+      setStatus('opened')
       return
     }
 
     setStatus('sending')
     try {
+      const payload = WEB3FORMS_KEY
+        ? {
+            access_key: WEB3FORMS_KEY,
+            subject: `Portfolio enquiry from ${data.name}`,
+            from_name: 'Portfolio contact form',
+            name: data.name,
+            email: data.email,
+            message: data.message,
+          }
+        : { name: data.name, email: data.email, message: data.message }
       const res = await fetch(ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       })
-      if (!res.ok) throw new Error(String(res.status))
+      const json = (await res.json().catch(() => ({}))) as { success?: boolean }
+      if (!res.ok || json.success === false) throw new Error(String(res.status))
       setStatus('sent')
       form.reset()
     } catch {
@@ -85,7 +115,9 @@ export function Contact() {
               </span>
               <div className="email-text">
                 <span className="label mono">email</span>
-                <a href={`mailto:${profile.email}`}>{profile.email}</a>
+                <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}`} target="_blank" rel="noopener noreferrer">
+                  {profile.email}
+                </a>
               </div>
               <button className="icon-btn" onClick={copyEmail} aria-label={copied ? 'Email copied' : 'Copy email address'}>
                 {copied ? <LuCheck /> : <LuCopy />}
@@ -143,6 +175,7 @@ export function Contact() {
                   <input name="email" type="email" required autoComplete="email" placeholder="you@company.com" />
                 </label>
               </div>
+              <input type="checkbox" name="botcheck" className="hp-field" tabIndex={-1} autoComplete="off" aria-hidden="true" />
               <label className="field">
                 <span>Message</span>
                 <textarea name="message" required rows={6} placeholder="Tell me about the role or project..." />
@@ -152,9 +185,23 @@ export function Contact() {
                 {status === 'sending' ? 'Sending...' : 'Send message'}
               </button>
               <p className={`form-status mono ${status}`} role="status" aria-live="polite">
-                {status === 'sent' && (ENDPOINT ? '200 OK · Message delivered. I will get back to you soon.' : 'Opening your mail app with the message ready to send.')}
-                {status === 'error' && `500 · Could not send. Please email ${profile.email} directly.`}
+                {status === 'sent' && '200 OK · Message delivered. I will get back to you soon.'}
+                {status === 'opened' && 'Gmail opened in a new tab with your message. Just hit Send there.'}
+                {status === 'error' && 'Could not send right now. Use one of the options below instead.'}
               </p>
+              {(status === 'opened' || status === 'error') && links && (
+                <div className="form-alt">
+                  <a href={links.gmail} target="_blank" rel="noopener noreferrer">
+                    <LuMail /> Open in Gmail
+                  </a>
+                  <a href={links.mailto}>
+                    <LuSend /> Use my mail app
+                  </a>
+                  <button type="button" onClick={copyEmail}>
+                    {copied ? <LuCheck /> : <LuCopy />} {copied ? 'Copied' : 'Copy email'}
+                  </button>
+                </div>
+              )}
             </div>
           </motion.form>
         </div>

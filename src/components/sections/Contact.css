@@ -152,8 +152,44 @@
 .form-status.sent {
   color: var(--accent-2);
 }
+.form-status.opened {
+  color: var(--accent);
+}
 .form-status.error {
   color: var(--danger);
+}
+.form-alt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.form-alt a,
+.form-alt button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.form-alt a:hover,
+.form-alt button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
 }
 
 @media (max-width: 900px) {

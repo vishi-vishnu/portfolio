@@ -28,16 +28,17 @@
 | **About** | Bio, a `profile.yaml` card, three focus areas (Cloud & DevOps, Web, Full Stack), a git-log style career timeline and certifications |
 | **Skills** | Filterable skill cards with brand logos and animated proficiency bars, plus a scrolling logo marquee |
 | **Projects** | Filterable project cards with cover images, status badges (Live, In progress, Planned, Academic), tech chips, live demo and code links, and a details modal |
-| **Contact** | Copy-to-clipboard email, social links, resume download and a contact form |
+| **Contact** | Copy-to-clipboard email, social links, resume download and a contact form (Web3Forms, or Gmail compose fallback) |
 | **Footer** | Call to action, links, "built with" stack and a system status card that shows the deployed commit SHA |
 
-Also: light and dark theme, fully responsive from 360px phones to wide screens, keyboard accessible, respects "reduce motion", and no external requests at runtime (fonts and icons are bundled).
+Also: light and dark theme, fully responsive from 360px phones to wide screens, keyboard accessible, respects "reduce motion", and fonts and icons are bundled (the only runtime requests are privacy-friendly Vercel analytics).
 
 ## Tech stack
 
 **App:** React 19, TypeScript (strict), Vite, Framer Motion, react-icons, plain CSS with design tokens
 **Quality:** ESLint, `tsc` type checks, Vitest data validation tests
 **Delivery:** Docker multi-stage build, Nginx, GitHub Actions, GHCR, Vercel
+**Monitoring:** Vercel Web Analytics, Speed Insights
 
 ---
 
@@ -156,7 +157,8 @@ flowchart LR
 1. Push this repo to GitHub as `vishi-vishnu/portfolio`.
 2. On [vercel.com/new](https://vercel.com/new), import the repo. Vercel detects Vite automatically (build `npm run build`, output `dist`).
 3. Click **Deploy**. Every push to `main` now deploys to production, and every pull request gets a preview URL.
-4. Optional: to receive contact form messages by email instead of opening the visitor's mail app, create a free form at [formspree.io](https://formspree.io), then add `VITE_FORM_ENDPOINT` with the form URL in Vercel → Project → Settings → Environment Variables and redeploy.
+4. **Contact form:** out of the box it opens Gmail compose in a new tab with the message filled in. To get messages straight in your inbox instead, get a free access key at [web3forms.com](https://web3forms.com) (enter your email, the key arrives by mail), add it as `VITE_WEB3FORMS_KEY` in Vercel → Project → Settings → Environment Variables, then redeploy.
+5. **Visitor stats:** the site ships with Vercel Web Analytics and Speed Insights. Turn them on once in Vercel → Project → **Analytics** → Enable, and **Speed Insights** → Enable. You then see visitors, page views, top pages, countries, devices and referrers (Hobby plan is free).
 
 ## Project structure
 

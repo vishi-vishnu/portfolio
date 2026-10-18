@@ -1,5 +1,7 @@
 import { useCallback, useState } from 'react'
 import { AnimatePresence, MotionConfig } from 'framer-motion'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import { BootLoader } from './components/layout/BootLoader'
 import { Navbar } from './components/layout/Navbar'
 import { Footer } from './components/layout/Footer'
@@ -47,6 +49,9 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      {/* Visitor stats and Core Web Vitals. View them in Vercel → Project → Analytics / Speed Insights. */}
+      <Analytics />
+      <SpeedInsights />
     </MotionConfig>
   )
 }
